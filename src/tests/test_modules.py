@@ -5,7 +5,7 @@ from gradescope_utils.autograder_utils.decorators import weight, number
 
 class TestBase(unittest.TestCase): 
     def runStudentCode(self, name):
-        res = subprocess.call(['./run_student_code.sh', f'{name}.vm'])
+        res = subprocess.call(['./run_student_code.sh', name])
         if res != 0:
             raise AssertionError(f'Unable to run student\'s virtual machine translator on {name}.vm!')
 
