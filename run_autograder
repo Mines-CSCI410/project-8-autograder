@@ -2,26 +2,24 @@
 
 EXECUTABLE=./virtualmachine
 
-cd /autograder/grader
-mkdir /autograder/results
-mkdir /autograder/source
+cp -r /autograder/submission/* /autograder/source/
 
-chmod o= /autograder/submission
-chmod o= /autograder/results
-chmod +rwx /autograder/source
+pushd /autograder/source/ >/dev/null
 
-cp /autograder/submission/ /autograder/source/
+# remove any tst, vm, or cmp files in submission
+rm -f *.vm *.tst *.cmp
 
-pushd /autograder/source/
-rm *.asm *.hack
-cp /autograder/grader/tests/*.{vm,tst} .
-
+# run student-submitted setup script (untrusted)
 chmod +x ./setup.sh
 runuser -u student -- ./setup.sh
 
-rm *.hack
-chmod +x "${EXECUTABLE}"
-runuser -u student -- ls *.asm | xargs -I{} ${EXECUTABLE} $(pwd)/{}
+# in case setup.sh created hack files
+rm -f *.asm *.cmp
 
-popd
+chmod ugo+x "${EXECUTABLE}"
+
+popd >/dev/null
+
+# diff outputs with expected
+cd /autograder/grader
 uv run src/run_tests.py

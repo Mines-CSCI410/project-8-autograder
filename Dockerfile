@@ -23,7 +23,7 @@ WORKDIR /
 ENV EXPECTED_HASH="b1c0900d2fd0211ae91f03d8680ba27b  -"
 RUN git clone https://github.com/kishy-codes/nand2tetris.git
 RUN test "$EXPECTED_HASH" = "$(git -C nand2tetris log -n 1 | md5sum)"
-RUN chmod +x /nand2tetris/tools/*.sh
+RUN chmod ug+x /nand2tetris/tools/*.sh
 RUN ln -s /nand2tetris/tools/Assembler.sh /usr/bin/n2tAssembler 
 RUN ln -s /nand2tetris/tools/HardwareSimulator.sh /usr/bin/n2tHardwareSimulator 
 RUN ln -s /nand2tetris/tools/VMEmulator.sh /usr/bin/n2tVMEmulator 
@@ -48,3 +48,15 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 
 # Setup unprivileged user
 RUN adduser student --no-create-home --disabled-password --gecos ""
+
+# Configure access to directories
+RUN mkdir -p /autograder/submission
+RUN mkdir -p /autograder/results
+RUN mkdir /autograder/outputs
+RUN mkdir /autograder/source
+
+RUN chmod o= /autograder/grader
+RUN chmod o= /autograder/submission
+RUN chmod o= /autograder/results
+RUN chmod o= /autograder/outputs
+RUN chmod -R ugo+rwx /autograder/source
