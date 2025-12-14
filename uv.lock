@@ -12,7 +12,7 @@ wheels = [
 ]
 
 [[package]]
-name = "project-7-virtualmachine"
+name = "project-8-virtualmachine"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
