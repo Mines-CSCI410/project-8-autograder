@@ -5,7 +5,7 @@ EXECUTABLE=./VMtranslator
 pushd /autograder/source/ >/dev/null
 
 # remove old files
-rm -f *.{vm,asm,tst}
+rm -rf ./${1}
 
 # copy test files over
 mkdir -p ./${1}
