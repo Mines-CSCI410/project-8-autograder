@@ -1,5 +1,5 @@
 [project]
-name = "project-7-virtualmachine"
+name = "project-8-virtualmachine"
 version = "0.1.0"
 description = "verifies the functionality of the virtual machine"
 readme = "README.md"
