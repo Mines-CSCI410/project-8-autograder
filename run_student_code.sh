@@ -11,9 +11,10 @@ rm -rf ./${1}
 mkdir -p ./${1}
 chmod -R ugo+rw ./${1}
 cp /autograder/grader/tests/${1}/* ./${1}
-cp /autograder/grader/tests/expected-outputs/${1}/*.cmp ./${1}
 
 # run student-submitted code (untrusted)
 runuser -u student -- ${EXECUTABLE} ${1}
+
+cp -f /autograder/grader/tests/expected-outputs/${1}/*.cmp ./${1}
 
 popd >/dev/null
