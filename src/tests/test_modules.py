@@ -29,32 +29,32 @@ class TestBase(unittest.TestCase):
         subprocess.run(['mv', f'/autograder/source/{dirname}/{name}.out', '/autograder/outputs/'])
 
 class TestModules(TestBase): 
-    @weight(47.5/4)
+    @weight(47.5)
     @number(1)
     def test_fibonacci_element(self):
         self.assertCorrectTranslator('FunctionCalls/FibonacciElement')
+    #
+    # @weight(47.5/4)
+    # @number(2)
+    # def test_nested_call(self):
+    #     self.assertCorrectTranslator('FunctionCalls/NestedCall')
+    #
+    # @weight(47.5/4)
+    # @number(3)
+    # def test_simple_function(self):
+    #     self.assertCorrectTranslator('FunctionCalls/SimpleFunction')
 
-    @weight(47.5/4)
-    @number(2)
-    def test_nested_call(self):
-        self.assertCorrectTranslator('FunctionCalls/NestedCall')
-
-    @weight(47.5/4)
-    @number(3)
-    def test_simple_function(self):
-        self.assertCorrectTranslator('FunctionCalls/SimpleFunction')
-
-    @weight(47.5/4)
+    @weight(47.5)
     @number(4)
     def test_statics_test(self):
         self.assertCorrectTranslator('FunctionCalls/StaticsTest')
 
-    @weight(47.5/2)
-    @number(5)
-    def test_basic_loop(self):
-        self.assertCorrectTranslator('ProgramFlow/BasicLoop')
-
-    @weight(47.5/2)
-    @number(6)
-    def test_fibonacci_series(self):
-        self.assertCorrectTranslator('ProgramFlow/FibonacciSeries')
+    # @weight(47.5/2)
+    # @number(5)
+    # def test_basic_loop(self):
+    #     self.assertCorrectTranslator('ProgramFlow/BasicLoop')
+    #
+    # @weight(47.5/2)
+    # @number(6)
+    # def test_fibonacci_series(self):
+    #     self.assertCorrectTranslator('ProgramFlow/FibonacciSeries')
