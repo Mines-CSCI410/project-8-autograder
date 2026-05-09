@@ -1,4 +1,5 @@
 import unittest
+import os
 import subprocess
 
 from gradescope_utils.autograder_utils.decorators import weight, number
@@ -35,10 +36,16 @@ class TestBase(unittest.TestCase):
         except subprocess.TimeoutExpired as err:
             raise TimeoutError(f'Emulator timed out out after {err.timeout} seconds:\n{str(err.stdout).strip()}')
 
+    def assertFileExists(self, path):
+        if not os.path.isfile(path):
+            raise AssertionError(f'File "{path}" does not exist!')
+
     def assertCorrectTranslator(self, dirname):
         _, name = dirname.split('/')
         self.runStudentCode(dirname, name)
+        self.assertFileExists(f'/autograder/source/{dirname}/{name}.asm')
         self.assertValidAssembly(dirname, name)
+        self.assertFileExists(f'/autograder/source/{dirname}/{name}.out')
         self.runCPUEmulator(dirname, name)
 
 class TestModules(TestBase): 
