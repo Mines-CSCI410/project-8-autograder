@@ -40,7 +40,6 @@ class TestBase(unittest.TestCase):
         self.runStudentCode(dirname, name)
         self.assertValidAssembly(dirname, name)
         self.runCPUEmulator(dirname, name)
-        subprocess.run(['mv', f'/autograder/source/{dirname}/{name}.out', '/autograder/outputs/'])
 
 class TestModules(TestBase): 
     @weight(47.5)
