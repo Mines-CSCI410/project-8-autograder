@@ -18,7 +18,7 @@ timeout -k 15 45 runuser -u student -- ./setup.sh
 # in case setup.sh created hack files
 rm -f *.asm *.cmp
 
-mv "./VMtranslator" "${EXECUTABLE}" # allow capitalization from old instructions
+mv "./VMtranslator" "${EXECUTABLE}" &>/dev/null # allow capitalization from old instructions
 dos2unix ./* 2>/dev/null
 chmod ugo+x "${EXECUTABLE}"
 

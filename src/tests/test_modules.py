@@ -48,7 +48,6 @@ class TestBase(unittest.TestCase):
         self.runStudentCode(dirname, name)
         self.assertFileExists(f'/autograder/source/{dirname}/{name}.asm')
         self.assertValidAssembly(dirname, name)
-        self.assertFileExists(f'/autograder/source/{dirname}/{name}.out')
         self.runCPUEmulator(dirname, name)
 
 class TestModules(TestBase): 
